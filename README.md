@@ -23,17 +23,19 @@ for details on what the methods are supposed to do.
 
 ```
 operator=
-front
-back
+
 empty
 size
 clear
+
 front
 back
+
 push_back
 push_front
 pop_back
 pop_front
+
 reverse
 unique
 ```
