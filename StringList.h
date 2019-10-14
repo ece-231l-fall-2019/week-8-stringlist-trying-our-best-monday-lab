@@ -4,20 +4,22 @@
 class StringList
 {
 	private:
-
-	typedef struct llist {
+	size_t _size = 0;
+	typedef struct llist
+       	{
 		std::string str;
 		struct llist *next;
-	} llist;
-
-	llist *_data;
+		struct llist *prev;} llist;
+	llist *_front = 0;
+	llist *_back = 0;
+	//llist *_data;
 
 	public:
 	
 	// default constructor
 	StringList()
 	{
-		_data = 0;
+		
 	}
 
 	// copy constructor
@@ -35,27 +37,59 @@ class StringList
 
 	std::string& front()
 	{
-		return _data->str;
+
+		return _front->str;
 	}
 
 	void push_front(std::string str)
 	{
 		llist *newItem = new llist;
-		newItem->str = str;
-		newItem->next = _data;
-		_data = newItem;
+		newItem->next = _front;
+		newItem->prev = 0;
+		newItem->next->prev = newItem;
+		_front = newItem;
+		_size++;
 	}
 
 	void pop_front()
 	{
-		llist *front = _data;
-		_data = front->next;
-		delete front;
+		_front = _front->next;
+		delete _front->prev;
+		_size--;
 	}
 
 	bool empty() const
 	{
-		return _data == 0;
+		return _front == 0;
 	}
+
+		
+	void push_back(std::string str)
+	{
+		llist *newItem = new llist;
+		newItem->next = _
+		_size++;
+	}
+	
+	size_t size()
+	{	
+		return _size;
+	}
+
+	void pop_back()
+	{
+		_back = _back->prev;
+		delete _back->next;
+		_back->next = 0;
+		_size--;
+	}
+
+	std::string& back()
+	{
+		
+		return _back->str;
+	}
+
+	
 };
 
