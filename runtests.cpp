@@ -32,11 +32,11 @@ int main()
 	a.push_front("C");
 	a.push_front("D");
 	a.push_back("E");
-	std::cout << a.size() << '\n';
-/*	for(std::string n : a)
-		std::cout << n << '\n';
-*/
-	Assert(a.size() == 5, "size method");
+//	std::cout << a.size() << '\n';
+//	for(std::string n : a)
+//		std::cout << n << '\n';
+
+//	Assert(a.size() == 5, "size method");
 
 	Assert(a.front() == "D", "front method");
 	a.pop_front();
@@ -44,8 +44,8 @@ int main()
 //	Assert(a.back() == "E", "back method");
 //	a.pop_back();
 //	Assert(a.back() == "B", "pop_back method");
-	a.pop_front();
-	Assert(a.front() == "A", "front method");
+//	a.pop_front();
+//	Assert(a.front() == "A", "front method");
 //	a.pop_back();
 //	Assert(a.back() == "A", "back method");
 	return 0;
