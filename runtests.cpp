@@ -24,7 +24,6 @@ int main()
 	// TODO:
 	// Write *at least* 15 more tests to fully test
 	// your class.
-
 	StringList a;
 
 	a.push_back("A");
@@ -32,22 +31,31 @@ int main()
 	a.push_front("C");
 	a.push_front("D");
 	a.push_back("E");
-//	std::cout << a.size() << '\n';
-//	for(std::string n : a)
-//		std::cout << n << '\n';
+	//std::cout << a.back() << '\n';
+/*	for(std::string n : a)
+		std::cout << n << '\n';
+	a.printData();*/
 
-//	Assert(a.size() == 5, "size method");
+	Assert(a.size() == 5, "size method");
 
 	Assert(a.front() == "D", "front method");
 	a.pop_front();
 	Assert(a.front() == "C", "pop_front method");
-//	Assert(a.back() == "E", "back method");
-//	a.pop_back();
-//	Assert(a.back() == "B", "pop_back method");
-//	a.pop_front();
-//	Assert(a.front() == "A", "front method");
-//	a.pop_back();
-//	Assert(a.back() == "A", "back method");
+	Assert(a.back() == "E", "back method");
+	a.pop_back();
+	Assert(a.back() == "B", "pop_back method");
+	a.pop_front();
+	Assert(a.front() == "A", "front method");
+	a.pop_back();
+	Assert(a.back() == "A", "back method");
+//	a.printData();
+	std::cout << a.size() << '\n';
+/*	for(std::string n :a)
+		std::cout << n << '\n';
+*/	a.clear();
+	std::cout << a.empty() << '\n';
+//	a.printData();
+	Assert(a.empty() == 1, "empty method");
 	return 0;
 }
 

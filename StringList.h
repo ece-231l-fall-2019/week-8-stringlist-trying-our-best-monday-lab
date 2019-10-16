@@ -12,13 +12,14 @@ class StringList
 		struct llist *prev;} llist;
 	llist *_front;
 	llist *_back;
-	//llist *_data;
+
 
 	public:
 	
 	// default constructor
 	StringList()
 	{
+
 		_size = 0;
 		_front = 0;
 		_back = 0;	
@@ -30,50 +31,83 @@ class StringList
 	// destructor
 	~StringList()
 	{
-		while(!empty())
-			pop_front();
+		clear();
 	}
 
 	// copy operator
-	StringList& operator=(const StringList&);
+	StringList& operator=(const StringList& other)
+	{
+		this->_front = other._front;
+		this->_back = other._back;
+		_size = other._size;
+		return *this;
 
+	}
 	std::string& front()
 	{
-
 		return _front->str;
 	}
 
 	void push_front(std::string str)
 	{
-		llist *newItem = new llist;
-		newItem->str = str;
-		newItem->next = _front;
-		newItem->prev = 0;
-		newItem->next->prev = newItem;
-		_front = newItem;
+		llist *ptr = new llist;
+		ptr->str = str;
+		ptr->next = _front;
+		_front = ptr;
+		if(_front->next == NULL)
+		{
+			_back = ptr;
+			ptr->next = ptr;
+		}
+		else
+		{
+			ptr->next->prev = ptr;
+		}
+		_front = ptr;
+		ptr = NULL;
+		delete ptr;
 		_size++;
 	}
 
 	void pop_front()
 	{
-		_front = _front->next;
-		delete _front->prev;
-		_size--;
+		llist *ptr = new llist;
+		ptr = _front;
+		_front = ptr->next;
+		ptr = NULL;
+		delete ptr;
+		if(_size == 0)
+			_size = _size;
+		else
+			_size = _size - 1;
 	}
 
 	bool empty() const
 	{
-		return _front == 0;
+		if(_size == 0)
+			return true;
+		return false; 
 	}
 
 		
 	void push_back(std::string str)
 	{
-		llist *newItem = new llist;
-		newItem->str = str;
-		newItem->next = _back;
-		newItem->prev = 0;
-		newItem->next = newItem;
+		llist *ptr = new llist;
+		ptr->str = str;
+		ptr->prev= _back;
+		_back = ptr;
+		if(_back->prev == NULL)
+		{
+			_front = ptr;
+			ptr->prev = ptr;
+		}
+		else
+		{
+			ptr->prev->next = ptr;
+		}
+		_back = ptr;
+		ptr = NULL;
+		delete ptr;
 		_size++;
 	}
 	
@@ -84,18 +118,34 @@ class StringList
 
 	void pop_back()
 	{
-		_back = _back->prev;
-		delete _back->next;
-		_back->next = 0;
-		_size--;
-	}
+	
+		llist *ptr = new llist;
+		ptr = _back;
+		_back = ptr->prev;
+		ptr = NULL;
+		delete [] ptr;
+		_back->prev->next = NULL;
+		if(_size == 0)
+			_size = _size;
+		else 
+			_size = _size -1;
+	} 
 
 	std::string& back()
 	{
-		
 		return _back->str;
 	}
 
-	
+	void clear()
+	{
+		while(empty() == false)
+			pop_front();
+	}
+	/*void printData()
+	{
+		llist *ptr = new llist;
+		for(ptr = _front; ptr != 0; ptr = ptr->next)
+			std::cout << ptr->str << '\n';
+	}*/
 };
 
