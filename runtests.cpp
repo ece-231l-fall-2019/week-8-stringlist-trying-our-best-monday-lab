@@ -49,13 +49,15 @@ int main()
 	a.pop_back();
 	Assert(a.back() == "A", "back method");
 //	a.printData();
-	std::cout << a.size() << '\n';
+//	std::cout << a.size() << '\n';
 /*	for(std::string n :a)
 		std::cout << n << '\n';
 */	a.clear();
-	std::cout << a.empty() << '\n';
+//	std::cout << a.back() << '\n';
 //	a.printData();
-	Assert(a.empty() == 1, "empty method");
+	std::cout << a.size() << '\n';
+
+	Assert(a.empty() == 0, "empty method");
 	return 0;
 }
 
