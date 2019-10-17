@@ -70,6 +70,7 @@ class StringList
 		newBackItem -> prev = _back;
 		newBackItem -> next = 0;
 		_back = newBackItem;
+		_size++;
 	}
 
 	// push_front
@@ -84,13 +85,16 @@ class StringList
 			_front = newNode;
 			_back = newNode;
 		}
-
-		llist *newFrontItem = new llist;
-		newFrontItem -> str = str;
-		newFrontItem -> next = _front;
-		newFrontItem -> prev = 0;
-		_front = newFrontItem;	
-		newFrontItem -> next -> prev = newFrontItem;
+		else
+		{
+			llist *newFrontItem = new llist;
+			newFrontItem -> str = str;
+			newFrontItem -> next = _front;
+			newFrontItem -> prev = 0;
+			_front = newFrontItem;	
+			newFrontItem -> next -> prev = newFrontItem;
+		}
+		_size++;
 	}
 	
 	// pop_front
@@ -99,6 +103,7 @@ class StringList
 		_front = _front -> next;
 		delete _front -> prev;
 		_front -> prev = 0;
+		_size = _size - 1;
 	}
 	
 	// pop_back
@@ -106,7 +111,8 @@ class StringList
 	{
 		_back = _back -> prev;
 		delete _back -> next;
-		_back -> next = 0;			
+		_back -> next = NULL;
+		_size = _size - 1;		
 	}
 
 	// empty
