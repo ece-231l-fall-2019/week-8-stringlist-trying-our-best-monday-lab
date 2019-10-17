@@ -27,24 +27,23 @@ class StringList
 	}
 
 	// copy constructor
-	int size()
-	{
-		return _size;
-	}
+	StringList(const StringList&); 	
 
-	// destructor
+	// destructor	
 	~StringList()
 	{
 		while(!empty())
+		{
 			pop_front();
+		}
 	}
-
+	
 	// operator =
 	StringList& operator=(const StringList& a)
 	{
 		for(const llist* b = a._front; b != 0; b = b -> next)
 		{
-			push_back(b->str);
+			push_back(b -> str);
 		}
 	
 		return *this;
@@ -61,7 +60,13 @@ class StringList
 	{
 		return _back->str;
 	}
-	
+
+	// size
+	size_t size()
+	{
+		return _size;
+	}
+
 	// push_back
 	void push_back(std::string str)
 	{
@@ -69,6 +74,16 @@ class StringList
 		newBackItem -> str = str;
 		newBackItem -> prev = _back;
 		newBackItem -> next = 0;
+		
+		if (_back != 0)
+		{
+			_back -> next = newBackItem;
+		}		
+		if (_front == 0)
+		{
+			_front = newBackItem;
+		}
+	
 		_back = newBackItem;
 		_size++;
 	}
@@ -84,32 +99,58 @@ class StringList
 			newNode -> prev = 0;
 			_front = newNode;
 			_back = newNode;
+			_size++;
 		}
-		else
-		{
-			llist *newFrontItem = new llist;
-			newFrontItem -> str = str;
-			newFrontItem -> next = _front;
-			newFrontItem -> prev = 0;
-			_front = newFrontItem;	
-			newFrontItem -> next -> prev = newFrontItem;
-		}
+		
+		llist *newFrontItem = new llist;
+		newFrontItem -> str = str;
+		newFrontItem -> next = _front;
+		newFrontItem -> prev = 0;
+		_front = newFrontItem;	
+		newFrontItem -> next -> prev = newFrontItem;
+	
 		_size++;
 	}
 	
 	// pop_front
 	void pop_front()
 	{
+		llist *saveFront = _front;
 		_front = _front -> next;
+		
+		if (_front)
+		{
+ 			_front -> prev = _front -> prev -> prev;
+		}
+		else
+		{
+			_back = 0;
+		}
+		
+		delete saveFront;
+		_size--;
 		delete _front -> prev;
 		_front -> prev = 0;
 		_size = _size - 1;
 	}
-	
+
 	// pop_back
 	void pop_back()
 	{
+		llist *saveBack = _back;
 		_back = _back -> prev;
+		
+		if (_back)
+		{
+			_back -> next = _back -> next -> next;
+		}
+		else 
+		{
+			_front = 0;
+		}
+		
+		delete saveBack;
+		_size--;
 		delete _back -> next;
 		_back -> next = NULL;
 		_size = _size - 1;		
@@ -157,9 +198,11 @@ class StringList
 					_back = i;
 					delete save;
 				}
+				
 			}
 		}
 	}
+
 	/*
 	std::ostream& operator<<(std::ostream& out, const StringList& a)
 	{

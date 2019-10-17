@@ -5,8 +5,6 @@
 
 #if 1
 #include "StringList.h"
-#include <list>
-#include <string>
 
 #else
 #include <list>
