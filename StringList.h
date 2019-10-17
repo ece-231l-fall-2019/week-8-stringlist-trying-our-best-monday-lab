@@ -43,11 +43,25 @@ class StringList
 		return *this;
 
 	}
+
+	// Front, Back, and Size Methods
 	std::string& front()
 	{
 		return _front->str;
 	}
 
+	std::string& back()
+	{
+		return _back->str;
+	}
+
+	size_t size()
+	{	
+		return _size;
+	}
+	// End Front, Back, and Size Methods
+
+	// Push Methods
 	void push_front(std::string str)
 	{
 		llist *ptr = new llist;
@@ -68,23 +82,9 @@ class StringList
 		_size++;
 	}
 
-	void pop_front()
-	{
-		_front = _front->next;
-		delete _front->prev;
-		_size = _size - 1;
-	}
-
-	bool empty() const
-	{
-		if(_front == NULL && _back == NULL)
-			return false;
-		return true; 
-	}
-
-		
 	void push_back(std::string str)
 	{
+
 		llist *ptr = new llist;
 		ptr->str = str;
 		ptr->prev= _back;
@@ -102,10 +102,14 @@ class StringList
 		Delete(ptr);
 		_size++;
 	}
-	
-	size_t size()
-	{	
-		return _size;
+	// End Push Methods
+
+	// Pop Methods
+	void pop_front()
+	{
+		_front = _front->next;
+		delete _front->prev;
+		_size = _size - 1;
 	}
 
 	void pop_back()
@@ -117,11 +121,15 @@ class StringList
 		else 
 			_size = _size -1;
 		delete _back->next;
-	} 
+	}
+	// End Pop Methods
 
-	std::string& back()
+	// Emptying The Double Linked List
+	bool empty() const
 	{
-		return _back->str;
+		if(_front == NULL && _back == NULL)
+			return false;
+		return true; 
 	}
 
 	void clear()
@@ -129,6 +137,8 @@ class StringList
 		while(empty() == false)
 			pop_front();
 	}
+
+	// Useful Functions For Testing Probably will Delete when finished with testing
 	void printData()
 	{
 		llist *ptr = new llist;
