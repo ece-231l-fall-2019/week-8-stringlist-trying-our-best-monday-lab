@@ -84,22 +84,21 @@ class StringList
 
 	void push_back(std::string str)
 	{
-
 		llist *ptr = new llist;
 		ptr->str = str;
-		ptr->prev= _back;
+		ptr->prev = _back;
 		_back = ptr;
 		if(_back->prev == NULL)
 		{
 			_front = ptr;
-			ptr->prev = ptr;
+			ptr->next = NULL;
 		}
 		else
 		{
 			ptr->prev->next = ptr;
 		}
 		_back = ptr;
-		Delete(ptr);
+		delete ptr;
 		_size++;
 	}
 	// End Push Methods
