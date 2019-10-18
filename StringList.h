@@ -11,7 +11,7 @@ class StringList
 		struct llist *next;
 		struct llist *prev;
 	} llist;
-	
+
 	size_t _size;
 	llist *_front;
 	llist *_back;
@@ -34,7 +34,9 @@ class StringList
 	{
 		while(!empty())
 		{
+			std::cout << "Popped" << std::endl;
 			pop_front();
+			std::cout << "Done popping" << std::endl;
 		}
 	}
 	
@@ -101,14 +103,15 @@ class StringList
 			_back = newNode;
 			_size++;
 		}
-		
-		llist *newFrontItem = new llist;
-		newFrontItem -> str = str;
-		newFrontItem -> next = _front;
-		newFrontItem -> prev = 0;
-		_front = newFrontItem;	
-		newFrontItem -> next -> prev = newFrontItem;
-	
+		else
+		{
+			llist *newFrontItem = new llist;
+			newFrontItem -> str = str;
+			newFrontItem -> next = _front;
+			newFrontItem -> prev = 0;
+			_front = newFrontItem;	
+			newFrontItem -> next -> prev = newFrontItem;
+		}
 		_size++;
 	}
 	
@@ -117,20 +120,11 @@ class StringList
 	{
 		llist *saveFront = _front;
 		_front = _front -> next;
-		
 		if (_front)
-		{
- 			_front -> prev = _front -> prev -> prev;
-		}
+ 			_front -> prev = 0;
 		else
-		{
 			_back = 0;
-		}
-		
 		delete saveFront;
-		_size--;
-		delete _front -> prev;
-		_front -> prev = 0;
 		_size = _size - 1;
 	}
 
@@ -150,32 +144,32 @@ class StringList
 		}
 		
 		delete saveBack;
-		_size--;
-		delete _back -> next;
+	//	_size--;
+		//delete _back -> next;
 		_back -> next = NULL;
-		_size = _size - 1;		
+		_size--;	
 	}
 
 	// empty
 	bool empty() const
 	{
-		return _back == 0;
+		return _front == 0;
 	}
 
 	// reverse
 	void reverse()
 	{
-		for (llist *z = _front; z != _back; z = z -> prev)
+		for (llist *z = _front; z != 0; z = z -> prev)
 		{
 			llist *temp = z -> next;
 			z -> next = z -> prev;
 			z -> prev = temp;
 		}
 		
-		llist *_save;
-		*_save = *_back;
-		*_back = *_front;
-		*_front = *_save;
+		llist *save;
+		save = _back;
+		_back = _front;
+		_front = save;
 	}
 
 	// unique
@@ -198,17 +192,21 @@ class StringList
 					_back = i;
 					delete save;
 				}
-				
+				_size++;
 			}
 		}
 	}
 
-	/*
-	std::ostream& operator<<(std::ostream& out, const StringList& a)
+	void print() 
 	{
-		a.unique;
-		
+		llist *temp = _front;
+		while (temp != 0)
+		{
+			std::cout << temp -> str << " ";
+			temp = temp -> next;
+		}
+		std::cout << std::endl;
 	}
-	*/
-};
 
+	
+};

@@ -35,20 +35,45 @@ int main()
 	a.push_front("C");
 	a.push_front("D");
 	a.push_back("E");
-	
+
+/*	
 	Assert(a.size() == 5, "size method");
 	Assert(a.front() == "D", "front method");
 	a.pop_front();
+	std::cout << "Size " << a.size() << std::endl;
+ 
 	Assert(a.front() == "C", "pop_front method");
 	Assert(a.back() == "E", "back method");
 	a.pop_back();
+	std::cout << "Size " << a.size() << std::endl;
+
 	Assert(a.back() == "B", "pop_back method");
 	a.pop_front();
+	std::cout << "Size " << a.size() << std::endl;
+	
 	Assert(a.front() == "A", "front method");
 	a.pop_back();
-	Assert(a.back() == "A", "back method");
+	std::cout << "Size " << a.size() << std::endl;
+
 	
+	Assert(a.back() == "A", "back method");
+	std::cout << "Size " << a.size() << std::endl;
+
+*/
+	
+	StringList rev;
+	rev.push_front("R");
+	rev.push_back("Q");
+	rev.push_back("Q");
+	rev.push_back("Q");
+	rev.push_back("Q");
+	rev.pop_back();
+
+	rev.print();
+	a.reverse();
+	a.print();
+	rev.unique();
+	rev.print();
+
 	return 0;
 }
-
-
