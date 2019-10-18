@@ -4,7 +4,7 @@
 class StringList
 {
 	private:
-	size_t _size;
+	int _size;
 	typedef struct llist
        	{
 		std::string str;
@@ -66,19 +66,19 @@ class StringList
 	{
 		llist *ptr = new llist;
 		ptr->str = str;
+		ptr->prev = NULL;
 		ptr->next = _front;
+		ptr->next->prev = ptr;
 		_front = ptr;
-		if(_front->next == NULL)
+		if(_back == NULL)
 		{
 			_back = ptr;
-			ptr->next = ptr;
 		}
 		else
 		{
 			ptr->next->prev = ptr;
 		}
 		_front = ptr;
-		Delete(ptr);
 		_size++;
 	}
 
@@ -86,19 +86,13 @@ class StringList
 	{
 		llist *ptr = new llist;
 		ptr->str = str;
+		ptr->next = 0;
 		ptr->prev = _back;
-		_back = ptr;
-		if(_back->prev == NULL)
-		{
+		if(_back != 0)
+			_back->next = ptr;
+		if(_front == 0)
 			_front = ptr;
-			ptr->next = NULL;
-		}
-		else
-		{
-			ptr->prev->next = ptr;
-		}
 		_back = ptr;
-		delete ptr;
 		_size++;
 	}
 	// End Push Methods
@@ -106,35 +100,66 @@ class StringList
 	// Pop Methods
 	void pop_front()
 	{
+		llist *saveptr = _front;
 		_front = _front->next;
-		delete _front->prev;
-		_size = _size - 1;
+		if(_front)
+			_front->prev = _front->prev->prev;
+		else
+			_back = 0;
+		delete saveptr;
+		_size--;
 	}
 
 	void pop_back()
 	{
+		llist *saveptr = _back;
 		_back = _back->prev;
-		_back->next = NULL;
-		if(_size == 0)
-			_size = _size;
-		else 
-			_size = _size -1;
-		delete _back->next;
+		if(_back)
+			_back->next = _back->next->next;
+		else
+			_front = 0;
+		delete saveptr;
+		_size--;
 	}
 	// End Pop Methods
 
 	// Emptying The Double Linked List
 	bool empty() const
 	{
-		if(_front == NULL && _back == NULL)
-			return false;
-		return true; 
+		return _front == 0;
 	}
 
 	void clear()
 	{
-		while(empty() == false)
+		while(!empty())
+		{
 			pop_front();
+		}	
+	}
+	// End of Emptying
+	
+	// Unique and Reverse
+	void unique()
+	{
+		for(llist *ptr = _front; ptr != 0; ptr = ptr->next)
+		{
+			while(ptr->next != 0 && ptr->str == ptr->next->str)
+			{
+				llist *saveptr = ptr->next;
+				ptr->next = saveptr->next;
+				if(saveptr->next == 0)
+					saveptr->next->prev = ptr;
+				else
+					_back = ptr;
+				delete saveptr;
+				_size--;
+			}
+		}	
+	}
+
+	void reverse()
+	{
+
 	}
 
 	// Useful Functions For Testing Probably will Delete when finished with testing
@@ -143,12 +168,6 @@ class StringList
 		llist *ptr = new llist;
 		for(ptr = _front; ptr != 0; ptr = ptr->next)
 			std::cout << ptr->str << '\n';
-	}
-	void Delete(llist *ptr)
-	{
-		ptr = NULL;
-		delete ptr;
-
 	}
 };
 
