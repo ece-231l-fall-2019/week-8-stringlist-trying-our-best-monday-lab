@@ -37,11 +37,9 @@ class StringList
 	// copy operator
 	StringList& operator=(const StringList& other)
 	{
-		this->_front = other._front;
-		this->_back = other._back;
-		_size = other._size;
+		for(const llist *b = other._front; b != 0; b = b->next)
+			push_back(b->str);
 		return *this;
-
 	}
 
 	// Front, Back, and Size Methods
@@ -126,7 +124,7 @@ class StringList
 	// Emptying The Double Linked List
 	bool empty() const
 	{
-		return _front == 0;
+		return (_front == 0)&&(_back == 0);
 	}
 
 	void clear()
@@ -159,7 +157,16 @@ class StringList
 
 	void reverse()
 	{
-
+		for(llist *z = _front; z != 0; z = z->prev)
+		{
+			llist *temp = z->next;
+			z->next = z->prev;
+			z->prev = temp;
+		}
+		llist *save;
+		save = _back;
+		_back = _front;
+		_front = save;
 	}
 
 	// Useful Functions For Testing Probably will Delete when finished with testing

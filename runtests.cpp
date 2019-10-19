@@ -44,8 +44,8 @@ int main()
 	Assert(a.front() == "A", "front method");
 	a.pop_back();
 	Assert(a.back() == "A", "back method");
-	std::cout << a.size() << '\n';
 	a.clear();
+	std::cout << a.size() << '\n';
 	Assert(a.empty(), "empty method");
 
 	/* Implement 15 more tests */
