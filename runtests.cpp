@@ -14,14 +14,14 @@ int main()
 	StringList d;
 	StringList e;
 	StringList f;
-
+	StringList g;
 
 // --- Test Push Front ---
 	
 	cout<<"[Testing Push_Front]"<<endl;
 	cout<<"--------------------"<<endl;
 
-	a.push_front("O");
+	a.push_front("O"); //adds nodes to the front
 	a.push_front("L");
 	a.push_front("L");
 	a.push_front("E");
@@ -41,7 +41,7 @@ int main()
 	cout<<"[Testing Push_Back]"<<endl;
 	cout<<"-------------------"<<endl;
 
-	b.push_back("W");
+	b.push_back("W"); //add nodes to the back
 	b.push_back("O");
 	b.push_back("R");
 	b.push_back("L");
@@ -53,6 +53,31 @@ int main()
 	cout<<"Size = "<<b.size()<<endl; //print size
 	cout<<endl;
 
+
+
+// --- Both Push Front and Back ---
+
+	cout<<endl;
+	cout<<"[Testing Push_Back & Push_Front]"<<endl;
+	cout<<"--------------------------------"<<endl;
+
+	g.push_front("O"); //add nodes to the front
+	g.push_front("L");
+	g.push_front("L");
+	g.push_front("E");
+	g.push_front("H");
+
+	g.push_back("W"); //add nodes to the back
+	g.push_back("O");
+	g.push_back("R");
+	g.push_back("L");
+	g.push_back("D");
+
+	g.print();
+
+	cout<<endl;	
+	cout<<"Size = "<<g.size()<<endl; //print size
+	cout<<endl;
 
 
 // --- Test Pop Front ---
@@ -76,7 +101,7 @@ int main()
 	
 	cout<<"Pop_Front: "<<endl;
 
-	c.pop_front();
+	c.pop_front(); //removes one node from the front
 	
 	c.print();
 	
@@ -107,7 +132,7 @@ int main()
 	
 	cout<<"Pop_Back: "<<endl;
 
-	d.pop_back();
+	d.pop_back(); //removes one node from back
 	
 	d.print();
 
@@ -142,7 +167,7 @@ int main()
 
 	cout<<"Reverse: "<<endl;
 
-	e.reverse();
+	e.reverse(); //reverse
 
 	e.print();
 
@@ -176,9 +201,9 @@ int main()
 
 	cout<<endl;
 
-	cout<<"Unique: "<<endl;
+	cout<<"Unique: "<<endl; 
 
-	f.unique();
+	f.unique(); //removes any identical pairs next to each other
 	
 	f.print();
 
@@ -187,7 +212,7 @@ int main()
 	cout<<endl;
 
 
-// --- ---
+// --- End Tests ---
 
 	return 0;
 }
