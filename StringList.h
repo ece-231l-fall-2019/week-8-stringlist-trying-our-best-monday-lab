@@ -34,9 +34,7 @@ class StringList
 	{
 		while(!empty())
 		{
-			std::cout << "Popped" << std::endl;
 			pop_front();
-			std::cout << "Done popping" << std::endl;
 		}
 	}
 	
@@ -120,12 +118,18 @@ class StringList
 	{
 		llist *saveFront = _front;
 		_front = _front -> next;
+		
 		if (_front)
- 			_front -> prev = 0;
+ 		{
+			_front -> prev = 0;
+		}
 		else
+		{
 			_back = 0;
+		}
+		
 		delete saveFront;
-		_size = _size - 1;
+		_size--;		
 	}
 
 	// pop_back
@@ -144,8 +148,6 @@ class StringList
 		}
 		
 		delete saveBack;
-	//	_size--;
-		//delete _back -> next;
 		_back -> next = NULL;
 		_size--;	
 	}
@@ -192,11 +194,12 @@ class StringList
 					_back = i;
 					delete save;
 				}
-				_size++;
+				_size--;
 			}
 		}
 	}
 
+	// print
 	void print() 
 	{
 		llist *temp = _front;
@@ -208,5 +211,4 @@ class StringList
 		std::cout << std::endl;
 	}
 
-	
 };
