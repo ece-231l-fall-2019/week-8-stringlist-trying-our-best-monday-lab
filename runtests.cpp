@@ -1,17 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// change the value below to 1 to run tests against your StringList class.
-// change the value below to 0 to run tests against the built in std::list.
-
-#if 1
 #include "StringList.h"
-
-#else
-#include <list>
-#include <string>
-typedef std::list<std::string> StringList;
-#endif
 
 int main()
 {
@@ -29,6 +19,7 @@ int main()
 // --- Test Push Front ---
 	
 	cout<<"[Testing Push_Front]"<<endl;
+	cout<<"--------------------"<<endl;
 
 	a.push_front("O");
 	a.push_front("L");
@@ -38,12 +29,17 @@ int main()
 
 	a.print();
 
+	cout<<endl;	
+	cout<<"Size = "<<a.size()<<endl; //print size
+	cout<<endl;
+
 
 
 // --- Test Push Back ---
 
 	cout<<endl;
 	cout<<"[Testing Push_Back]"<<endl;
+	cout<<"-------------------"<<endl;
 
 	b.push_back("W");
 	b.push_back("O");
@@ -53,20 +49,23 @@ int main()
 
 	b.print();
 
+	cout<<endl;	
+	cout<<"Size = "<<b.size()<<endl; //print size
+	cout<<endl;
+
 
 
 // --- Test Pop Front ---
 
 	cout<<endl;
 	cout<<"[Testing Pop_Front]"<<endl;
-	cout<<"------------------"<<endl;
+	cout<<"-------------------"<<endl;
 
 	cout<<"Test String: "<<endl;
 
 	c.push_back("P");
 	c.push_back("O");
 	c.push_back("P");
-	c.push_back("");
 	c.push_back("D");
 	c.push_back("O");
 	c.push_back("G");
@@ -81,6 +80,10 @@ int main()
 	
 	c.print();
 	
+	cout<<endl;	
+	cout<<"Size = "<<c.size()<<endl; //print size
+	cout<<endl;
+
 
 
 // --- Test Pop_Back ---
@@ -94,7 +97,6 @@ int main()
 	d.push_back("P");
 	d.push_back("O");
 	d.push_back("P");
-	d.push_back("");
 	d.push_back("D");
 	d.push_back("O");
 	d.push_back("G");
@@ -108,6 +110,10 @@ int main()
 	d.pop_back();
 	
 	d.print();
+
+	cout<<endl;	
+	cout<<"Size = "<<d.size()<<endl; //print size
+	cout<<endl;
 
 
 
@@ -139,6 +145,10 @@ int main()
 	e.reverse();
 
 	e.print();
+
+	cout<<endl;	
+	cout<<"Size = "<<e.size()<<endl; //print size
+	cout<<endl;
 
 
 
@@ -172,51 +182,13 @@ int main()
 	
 	f.print();
 
-/*
-	a.push_back("A");
-	a.push_back("B");
-	a.push_front("C");
-	a.push_front("D");
-	a.push_back("E");
-	
-	StringList rev;
-	rev.push_front("R");
-	rev.push_back("Q");
-	rev.push_back("Q");
-	rev.push_back("Q");
-	rev.push_back("Q");
-	rev.pop_back();
+	cout<<endl;	
+	cout<<"Size = "<<f.size()<<endl; //print size
+	cout<<endl;
 
-	rev.print();
-	a.reverse();
-	a.print();
-	rev.unique();
-	rev.print();
-*/
+
+// --- ---
+
 	return 0;
 }
-/*	
-	Assert(a.size() == 5, "size method");
-	Assert(a.front() == "D", "front method");
-	a.pop_front();
-	std::cout << "Size " << a.size() << std::endl;
- 
-	Assert(a.front() == "C", "pop_front method");
-	Assert(a.back() == "E", "back method");
-	a.pop_back();
-	std::cout << "Size " << a.size() << std::endl;
-
-	Assert(a.back() == "B", "pop_back method");
-	a.pop_front();
-	std::cout << "Size " << a.size() << std::endl;
-	
-	Assert(a.front() == "A", "front method");
-	a.pop_back();
-	std::cout << "Size " << a.size() << std::endl;
-
-	
-	Assert(a.back() == "A", "back method");
-	std::cout << "Size " << a.size() << std::endl;
-
-*/
 

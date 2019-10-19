@@ -99,7 +99,6 @@ class StringList
 			newNode -> prev = 0;
 			_front = newNode;
 			_back = newNode;
-			_size++;
 		}
 		else
 		{
