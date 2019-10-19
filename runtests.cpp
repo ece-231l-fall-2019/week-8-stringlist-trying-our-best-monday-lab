@@ -15,6 +15,8 @@ int main()
 	StringList e;
 	StringList f;
 	StringList g;
+	StringList cpy;
+	StringList dst;
 
 // --- Test Push Front ---
 	
@@ -77,6 +79,32 @@ int main()
 
 	cout<<endl;	
 	cout<<"Size = "<<g.size()<<endl; //print size
+	cout<<endl;
+
+// --- operator= ---
+
+	cout<<endl;
+	cout<<"[Operator=]"<<endl;
+	cout<<"-----------"<<endl;
+	
+	cout<<"Initial Text: "<<endl;
+	cpy.push_back("C");
+	cpy.push_back("O");
+	cpy.push_back("P");
+	cpy.push_back("I");
+	cpy.push_back("E");
+	cpy.push_back("D");
+	
+	cpy.print();
+	
+	cout<<endl;
+	cout<<"Destination: "<<endl;
+
+	dst = cpy; //copy operation
+	dst.print();
+	
+	cout<<endl;
+	cout<<"Size = "<<b.size()<<endl; //print size
 	cout<<endl;
 
 
