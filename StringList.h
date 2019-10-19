@@ -4,7 +4,6 @@
 class StringList
 {
 	private:
-
 	typedef struct llist 
 	{
 		std::string str;
@@ -16,11 +15,13 @@ class StringList
 	llist *_front;
 	llist *_back;
 
+
 	public:
 	
 	// default constructor
 	StringList()
 	{
+
 		_size = 0;
 		_front = 0;
 		_back = 0;
@@ -66,6 +67,7 @@ class StringList
 	{
 		return _size;
 	}
+
 
 	// push_back
 	void push_back(std::string str)
