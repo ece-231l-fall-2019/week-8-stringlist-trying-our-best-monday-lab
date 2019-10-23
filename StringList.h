@@ -67,7 +67,7 @@ class StringList
 	{
 		return _size;
 	}
-
+	
 
 	// push_back
 	void push_back(std::string str)
@@ -152,11 +152,18 @@ class StringList
 		_back -> next = NULL;
 		_size--;	
 	}
+	void clear()
+	{
+		while(!empty())
+		{
+			pop_front();
+		}
+	}
 
 	// empty
 	bool empty() const
 	{
-		return _front == 0;
+		return (_front == 0)&&(_back == 0);
 	}
 
 	// reverse
