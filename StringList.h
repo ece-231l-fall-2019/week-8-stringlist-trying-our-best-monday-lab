@@ -28,15 +28,17 @@ class StringList
 	}
 
 	// copy constructor
-	StringList(const StringList&); 	
+	StringList(const StringList& a)
+	{
+		_front = a._front;
+		_back = a._back;
+		_size = a._size;
+	}	
 
 	// destructor	
 	~StringList()
 	{
-		while(!empty())
-		{
-			pop_front();
-		}
+		clear();
 	}
 	
 	// operator =
